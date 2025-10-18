@@ -47,7 +47,7 @@ const Page = ({ slug: propSlug }) => {
   if (sections.length === 0) return <p className="text-center py-10">Page not found.</p>;
 
   return (
-    <div className="space-y-10 p-6">
+    <div className="space-y-10 p-6 bg-gray-100">
       {sections.map((section) => (
         <SectionRenderer key={`${section.__component}-${section.id || index}`} section={section} />
       ))}
