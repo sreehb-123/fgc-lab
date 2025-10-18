@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_faculty_cards",
+  "info": {
+    "displayName": "facultyCards"
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "string"
+    },
+    "faculty": {
+      "type": "component",
+      "component": "sections.faculty-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

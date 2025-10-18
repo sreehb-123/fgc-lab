@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_card_items",
+  "info": {
+    "displayName": "cardItem"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subTitle": {
+      "type": "string"
+    },
+    "info": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

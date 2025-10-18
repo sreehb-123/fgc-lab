@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "sections.text",
+        "sections.table",
+        "sections.faculty-cards",
+        "sections.carousel",
+        "sections.cards"
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_cards",
+  "info": {
+    "displayName": "cards"
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "string"
+    },
+    "cards": {
+      "type": "component",
+      "component": "sections.card-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

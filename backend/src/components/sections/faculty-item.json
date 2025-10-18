@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_faculty_items",
+  "info": {
+    "displayName": "facultyItem"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}
