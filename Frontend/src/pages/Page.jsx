@@ -25,7 +25,7 @@ const Page = ({ slug: propSlug }) => {
     const fetchPage = async () => {
       try {
         const { data } = await axios.get(
-          `${API_BASE}/pages?filters[slug][$eq]=home&${populateQuery}`
+          `${API_BASE}/pages?filters[slug][$eq]=${slug}&${populateQuery}`
         );
         // console.log("API response data:", data);
 
