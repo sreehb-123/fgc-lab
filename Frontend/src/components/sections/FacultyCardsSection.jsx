@@ -5,7 +5,7 @@ export default function FacultyCardsSection({ data }) {
   if (!faculty || faculty.length === 0) return null;
 
   return (
-    <section className="py-12 bg-gray-30">
+    <section className="py-12 rounded-2xl bg-gray-200 shadow-2xl">
       <h2 className="text-center text-3xl font-bold text-gray-900 mb-8">
         {sectionTitle}
       </h2>
