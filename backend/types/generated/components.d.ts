@@ -7,8 +7,20 @@ export interface SectionsCardItem extends Struct.ComponentSchema {
   };
   attributes: {
     info: Schema.Attribute.Text;
+    no: Schema.Attribute.String;
     subTitle: Schema.Attribute.String;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsCardSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_card_sections';
+  info: {
+    displayName: 'cardSection';
+  };
+  attributes: {
+    sectionTitle: Schema.Attribute.String;
+    subSection: Schema.Attribute.Component<'sections.cards', true>;
   };
 }
 
@@ -19,7 +31,7 @@ export interface SectionsCards extends Struct.ComponentSchema {
   };
   attributes: {
     cards: Schema.Attribute.Component<'sections.card-item', true>;
-    sectionTitle: Schema.Attribute.String;
+    subSectionTitle: Schema.Attribute.String;
   };
 }
 
@@ -56,6 +68,18 @@ export interface SectionsFacultyItem extends Struct.ComponentSchema {
     imageUrl: Schema.Attribute.String;
     name: Schema.Attribute.String;
     role: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsGallery extends Struct.ComponentSchema {
+  collectionName: 'components_sections_galleries';
+  info: {
+    displayName: 'gallery';
+  };
+  attributes: {
+    images: Schema.Attribute.Component<'sections.slides', true>;
+    layoutType: Schema.Attribute.Enumeration<['grid', 'masonry', 'carousel']>;
+    sectionTitle: Schema.Attribute.String;
   };
 }
 
@@ -97,10 +121,12 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'sections.card-item': SectionsCardItem;
+      'sections.card-section': SectionsCardSection;
       'sections.cards': SectionsCards;
       'sections.carousel': SectionsCarousel;
       'sections.faculty-cards': SectionsFacultyCards;
       'sections.faculty-item': SectionsFacultyItem;
+      'sections.gallery': SectionsGallery;
       'sections.slides': SectionsSlides;
       'sections.table': SectionsTable;
       'sections.text': SectionsText;

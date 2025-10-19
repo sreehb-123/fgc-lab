@@ -7,11 +7,12 @@ import Footer from "../components/Footer";
 const API_BASE = "http://localhost:1337/api";
 
 const populateQuery = [
-  "populate[sections][on][sections.cards][populate]=*",
+  "populate[sections][on][sections.card-section][populate][subSection][populate]=*",
   "populate[sections][on][sections.faculty-cards][populate]=*",
   "populate[sections][on][sections.text][populate]=*",
   "populate[sections][on][sections.carousel][populate][carouselSlide][populate]=*",
   "populate[sections][on][sections.table][populate]=*",
+  "populate[sections][on][sections.gallery][populate][images][populate]=*"
 ].join("&");
 
 const Page = ({ slug: propSlug }) => {
