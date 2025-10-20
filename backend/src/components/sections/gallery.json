@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_galleries",
+  "info": {
+    "displayName": "gallery"
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "string"
+    },
+    "layoutType": {
+      "type": "enumeration",
+      "enum": [
+        "grid",
+        "masonry",
+        "carousel"
+      ]
+    },
+    "images": {
+      "type": "component",
+      "component": "sections.slides",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

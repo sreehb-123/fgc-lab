@@ -13,6 +13,9 @@
     },
     "info": {
       "type": "text"
+    },
+    "no": {
+      "type": "string"
     }
   },
   "config": {}

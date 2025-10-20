@@ -6,6 +6,7 @@ import TableSection from "./sections/TableSection";
 import FacultyCards from "./sections/FacultyCardsSection";
 import CarouselSection from "./sections/CarouselSection";
 import CardsSection from "./sections/CardsSection";
+import GallerySection from "./sections/GallerySection";
 
 const SectionRenderer = ({ section }) => {
   switch (section.__component) {
@@ -21,8 +22,11 @@ const SectionRenderer = ({ section }) => {
     case "sections.carousel":
       return <CarouselSection data={section} />;
 
-    case "sections.cards":
+    case "sections.card-section":
       return <CardsSection data={section} />;
+
+    case "sections.gallery":
+      return <GallerySection section={section} />;
 
     default:
       return null;

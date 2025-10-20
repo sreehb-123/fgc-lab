@@ -491,7 +491,8 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.table',
         'sections.faculty-cards',
         'sections.carousel',
-        'sections.cards',
+        'sections.card-section',
+        'sections.gallery',
       ]
     >;
     slug: Schema.Attribute.UID<'title'>;
