@@ -1,1 +1,7 @@
 @import "tailwindcss";
+@theme {
+  --colors-brand-primary: #4B0082;
+  --colors-brand-accent: #00CED1;
+  --height-20: 5rem;
+  --scroll-margin-top-20: 5rem;
+}
