@@ -26,7 +26,8 @@
         "sections.faculty-cards",
         "sections.carousel",
         "sections.card-section",
-        "sections.gallery"
+        "sections.gallery",
+        "sections.resize-test"
       ]
     }
   }
