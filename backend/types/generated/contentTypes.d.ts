@@ -456,6 +456,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.carousel',
         'sections.card-section',
         'sections.gallery',
+        'sections.resize-test',
       ]
     >;
     slug: Schema.Attribute.UID<'title'>;
@@ -463,6 +464,41 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiResizeTestResizeTest extends Struct.CollectionTypeSchema {
+  collectionName: 'resize_tests';
+  info: {
+    displayName: 'resizeTest';
+    pluralName: 'resize-tests';
+    singularName: 'resize-test';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    color: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    height: Schema.Attribute.Integer;
+    label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::resize-test.resize-test'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textColor: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
+    width: Schema.Attribute.Integer;
+    x: Schema.Attribute.Integer;
+    y: Schema.Attribute.Integer;
   };
 }
 
@@ -977,6 +1013,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::page.page': ApiPagePage;
+      'api::resize-test.resize-test': ApiResizeTestResizeTest;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

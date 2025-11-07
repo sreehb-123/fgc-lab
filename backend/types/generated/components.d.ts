@@ -83,6 +83,23 @@ export interface SectionsGallery extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsResizeTest extends Struct.ComponentSchema {
+  collectionName: 'components_sections_resize_tests';
+  info: {
+    displayName: 'resizeTest';
+  };
+  attributes: {
+    color: Schema.Attribute.String;
+    height: Schema.Attribute.Integer;
+    label: Schema.Attribute.String;
+    textColor: Schema.Attribute.String;
+    url: Schema.Attribute.String;
+    width: Schema.Attribute.Integer;
+    x: Schema.Attribute.Integer;
+    y: Schema.Attribute.Integer;
+  };
+}
+
 export interface SectionsSlides extends Struct.ComponentSchema {
   collectionName: 'components_sections_slides';
   info: {
@@ -127,6 +144,7 @@ declare module '@strapi/strapi' {
       'sections.faculty-cards': SectionsFacultyCards;
       'sections.faculty-item': SectionsFacultyItem;
       'sections.gallery': SectionsGallery;
+      'sections.resize-test': SectionsResizeTest;
       'sections.slides': SectionsSlides;
       'sections.table': SectionsTable;
       'sections.text': SectionsText;

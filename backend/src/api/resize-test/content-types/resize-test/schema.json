@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "resize_tests",
+  "info": {
+    "singularName": "resize-test",
+    "pluralName": "resize-tests",
+    "displayName": "resizeTest"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "x": {
+      "type": "integer"
+    },
+    "y": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "color": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    }
+  }
+}
