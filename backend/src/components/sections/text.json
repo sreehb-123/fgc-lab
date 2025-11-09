@@ -10,6 +10,25 @@
     },
     "content": {
       "type": "blocks"
+    },
+
+    "link": {
+      "type":"string"
+    },
+
+    "date":{
+      "type" : "string"
+    },
+
+    "date_range":{
+      "type": "string"
+    },
+    "link_text":{
+      "type":"string"
+    },
+
+    "link_description":{
+      "type":"string"
     }
   },
   "config": {}
