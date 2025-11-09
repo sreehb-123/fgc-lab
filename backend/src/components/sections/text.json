@@ -10,7 +10,44 @@
     },
     "content": {
       "type": "blocks"
-    }
+    },
+
+    "link": {
+      "type":"string"
+    },
+
+    "date":{
+      "type" : "string"
+    },
+
+    "date_range":{
+      "type": "string"
+    },
+    "link_text":{
+      "type":"string"
+    },
+
+    "link_description":{
+      "type":"string"
+    },
+
+    "x": {
+  "type": "integer",
+  "default": 0
+},
+"y": {
+  "type": "integer",
+  "default": 0
+},
+"width": {
+  "type": "integer",
+  "default": 400
+},
+"height": {
+  "type": "integer",
+  "default": 200
+}
   },
   "config": {}
 }
+

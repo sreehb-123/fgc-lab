@@ -13,7 +13,23 @@
     },
     "columns": {
       "type": "json"
-    }
+    },
+    "x": {
+  "type": "integer",
+  "default": 0
+},
+"y": {
+  "type": "integer",
+  "default": 0
+},
+"width": {
+  "type": "integer",
+  "default": 400
+},
+"height": {
+  "type": "integer",
+  "default": 200
+}
   },
   "config": {}
 }
