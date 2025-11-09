@@ -15,7 +15,7 @@ export const getPageBySlug = async (slug) => {
 export const getNavLinks = async() => {
 
    try {
-    const res = await api.get("/pages?fields[0]=title&fields[1]=slug");
+    const res = await api.get("/pages?sort[0]=id:asc&fields[0]=title&fields[1]=slug");
 
     console.log("Nav links response data: ",res.data.data);
 

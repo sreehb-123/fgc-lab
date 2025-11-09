@@ -4,6 +4,8 @@ import Page from "./pages/Page";
 import ResizeTest from "./ResizeTest";
 import { PageProvider } from "./context/PageContext";
 import Navbar from "./components/Navbar";
+import LoginPage from "./pages/LoginPage";
+
 
 export default function App() {
   return (
@@ -14,6 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/:slug" element={<Page />} />
         <Route path="/" element={<Page slug="home" />} />
+        {/* <Route path="/login" element={<LoginPage />} /> */}
         <Route path="/resize-test" element={<ResizeTest />} />
       </Routes>
 

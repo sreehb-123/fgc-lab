@@ -6,10 +6,14 @@ export interface SectionsCardItem extends Struct.ComponentSchema {
     displayName: 'cardItem';
   };
   attributes: {
+    height: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<200>;
     info: Schema.Attribute.Text;
     no: Schema.Attribute.String;
     subTitle: Schema.Attribute.String;
     title: Schema.Attribute.String;
+    width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<400>;
+    x: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    y: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -19,8 +23,12 @@ export interface SectionsCardSection extends Struct.ComponentSchema {
     displayName: 'cardSection';
   };
   attributes: {
+    height: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<200>;
     sectionTitle: Schema.Attribute.String;
     subSection: Schema.Attribute.Component<'sections.cards', true>;
+    width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<400>;
+    x: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    y: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -31,7 +39,11 @@ export interface SectionsCards extends Struct.ComponentSchema {
   };
   attributes: {
     cards: Schema.Attribute.Component<'sections.card-item', true>;
+    height: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<200>;
     subSectionTitle: Schema.Attribute.String;
+    width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<400>;
+    x: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    y: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -42,7 +54,11 @@ export interface SectionsCarousel extends Struct.ComponentSchema {
   };
   attributes: {
     carouselSlide: Schema.Attribute.Component<'sections.slides', true>;
+    height: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<200>;
     title: Schema.Attribute.String;
+    width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<400>;
+    x: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    y: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -53,7 +69,11 @@ export interface SectionsFacultyCards extends Struct.ComponentSchema {
   };
   attributes: {
     faculty: Schema.Attribute.Component<'sections.faculty-item', true>;
+    height: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<200>;
     sectionTitle: Schema.Attribute.String;
+    width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<400>;
+    x: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    y: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -65,9 +85,13 @@ export interface SectionsFacultyItem extends Struct.ComponentSchema {
   attributes: {
     description: Schema.Attribute.Text;
     email: Schema.Attribute.String;
+    height: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<200>;
     imageUrl: Schema.Attribute.String;
     name: Schema.Attribute.String;
     role: Schema.Attribute.String;
+    width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<400>;
+    x: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    y: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -77,9 +101,13 @@ export interface SectionsGallery extends Struct.ComponentSchema {
     displayName: 'gallery';
   };
   attributes: {
+    height: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<200>;
     images: Schema.Attribute.Component<'sections.slides', true>;
     layoutType: Schema.Attribute.Enumeration<['grid', 'masonry', 'carousel']>;
     sectionTitle: Schema.Attribute.String;
+    width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<400>;
+    x: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    y: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -90,13 +118,13 @@ export interface SectionsResizeTest extends Struct.ComponentSchema {
   };
   attributes: {
     color: Schema.Attribute.String;
-    height: Schema.Attribute.Integer;
+    height: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<200>;
     label: Schema.Attribute.String;
     textColor: Schema.Attribute.String;
     url: Schema.Attribute.String;
-    width: Schema.Attribute.Integer;
-    x: Schema.Attribute.Integer;
-    y: Schema.Attribute.Integer;
+    width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<400>;
+    x: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    y: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -107,7 +135,11 @@ export interface SectionsSlides extends Struct.ComponentSchema {
   };
   attributes: {
     caption: Schema.Attribute.String;
+    height: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<200>;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<400>;
+    x: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    y: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -118,8 +150,12 @@ export interface SectionsTable extends Struct.ComponentSchema {
   };
   attributes: {
     columns: Schema.Attribute.JSON;
+    height: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<200>;
     rows: Schema.Attribute.JSON;
     title: Schema.Attribute.String;
+    width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<400>;
+    x: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    y: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -130,7 +166,16 @@ export interface SectionsText extends Struct.ComponentSchema {
   };
   attributes: {
     content: Schema.Attribute.Blocks;
+    date: Schema.Attribute.String;
+    date_range: Schema.Attribute.String;
+    height: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<200>;
+    link: Schema.Attribute.String;
+    link_description: Schema.Attribute.String;
+    link_text: Schema.Attribute.String;
     title: Schema.Attribute.String;
+    width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<400>;
+    x: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    y: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
