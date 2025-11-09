@@ -2,8 +2,6 @@ import React from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 
-// I have added placeholder values for testing and styling. To be removed before deployment, as certain sections may not exist.
-
 export default function TextSection({ data }) {
   const {
     title,
@@ -11,13 +9,17 @@ export default function TextSection({ data }) {
     link,
     date,
     date_range,
+    link_text,
+    link_description
   } = data || {};
 
-  const displayTitle = title || "Untitled Section";
-  const displayDateRange = date_range || "2024–Present";
-  const displayDate = date || "Date not specified";
+  const displayTitle = title  || "";
+  const displayDateRange = date_range  || "";
+  const displayDate = date  || "";
   const hasContent = content && content.length > 0;
-  const displayLink = link || "#";
+  const displayLink = link  || "#";
+  const linkDescription = link_description || "" ;
+  const linkText = link_text || "" ;
 
   return (
     <section className="py-8">
@@ -28,7 +30,7 @@ export default function TextSection({ data }) {
               {displayTitle}
             </p>
             <span className="text-sm text-gray-500 italic whitespace-nowrap ml-4">
-              ({displayDateRange})
+              {displayDateRange}
             </span>
           </div>
 
@@ -44,7 +46,7 @@ export default function TextSection({ data }) {
             )}
 
             <p>
-              <strong>Project Staff Vacancies:</strong>
+              <strong>{linkDescription}</strong>
               <a
                 href={displayLink}
                 target="_blank"
@@ -55,7 +57,7 @@ export default function TextSection({ data }) {
                     : "text-gray-400 cursor-not-allowed"
                 } font-medium ml-1 inline-flex items-center`}
               >
-                {link ? "View Here" : "No link provided"}
+                {link ? {linkText} : ""}
               </a>
             </p>
           </div>
