@@ -11,7 +11,7 @@ import { slugify, deSlugify } from "../utils/formatter";
 // import { useAuth } from "../context/AuthContext";
 
 
-const API_BASE = "http://localhost:1337/api";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;;
 const DEBUG = true;
 
 const populateQuery = [

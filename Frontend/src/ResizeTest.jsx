@@ -5,9 +5,10 @@ import { Rnd } from "react-rnd";
 export default function ResizeTest() {
   const [buttons, setButtons] = useState([]);
 
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
   useEffect(() => {
     axios
-      .get("http://localhost:1337/api/resize-tests")
+      .get(`${API_BASE}/resize-tests`)
       .then((response) => {
         console.log("Fetched data:", response.data);
         setButtons(response.data.data);
@@ -24,7 +25,7 @@ export default function ResizeTest() {
 
     // Update in Strapi
     axios
-      .put(`http://localhost:1337/api/resize-tests/${id}`, {
+      .put(`${API_BASE}/resize-tests/${id}`, {
         data: updates,
       })
       .then(() => console.log(`Updated button ${id}`))
