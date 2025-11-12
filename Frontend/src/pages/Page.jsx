@@ -100,7 +100,7 @@ const Page = ({ slug: propSlug }) => {
           );
         })}
       </main>
-      <Footer footer={"Footer"} /> 
+      <Footer footer={"© NextGen Lab. All rights reserved."} /> 
     </div>
    
   );
