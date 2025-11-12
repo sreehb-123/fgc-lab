@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const STRAPI_BASE_URL = import.meta.env.VITE_STRAPI_BASE_URL || "http://localhost:1337";
+const STRAPI_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default function CarouselSection({ data }) {
   const { carouselSlide } = data;
