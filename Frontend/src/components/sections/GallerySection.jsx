@@ -9,7 +9,7 @@ export default function GallerySection({ section }) {
   const accentColor = "#4B0082";
   const { sectionTitle, layoutType = "carousel", images, description } = section;
 
-  const STRAPI_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const STRAPI_BASE_URL = import.meta.env.VITE_API_BASE_URL.replace(/\/api\/?$/, "");
 
   // Masonry breakpoints
   const breakpointColumns = {
