@@ -57,7 +57,7 @@ export default function TextSection({ data }) {
                     : "text-gray-400 cursor-not-allowed"
                 } font-medium ml-1 inline-flex items-center`}
               >
-                {link ? linkText : ""}
+                {link ? linkText : "View Here"}
               </a>
             </p>
           </div>
