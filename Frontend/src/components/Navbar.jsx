@@ -6,7 +6,8 @@ import { usePageContext } from '../context/PageContext';
 import api from '../api/strapi';
 import { slugify, deSlugify } from '../utils/formatter'; 
 
-const MAX_DIRECT_LINKS = 3;
+const MAX_DIRECT_PAGES = 6;
+const MAX_DIRECT_SECTIONS = 3;
 
 const Navbar = () => {
   const [pageLinks, setPageLinks] = useState([]);
@@ -24,8 +25,6 @@ const Navbar = () => {
   useEffect(() => {
     const fetchNavData = async () => {
       const links = await getNavLinks();
-      if (links) setPageLinks(links);
-      
       if (links) setPageLinks(links.sort((a, b) => a.id - b.id));
 
       try {
@@ -85,12 +84,12 @@ const Navbar = () => {
               to={`/${slug}`}
               onClick={isMobile ? toggleMenu : () => setIsPageDropdownOpen(false)}
               className={({ isActive }) =>
-                `transition duration-150 flex items-center whitespace-nowrap text-lg
-                 ${isMobile ? 'w-full text-left text-base' : 'text-base transition-transform duration-150 ease-in-out'}
+                `transition duration-150 flex items-center whitespace-nowrap text-sm
+                 ${isMobile ? 'w-full text-left' : 'transition-transform duration-150 ease-in-out'}
                  ${isActive 
                    ? 'text-cyan-500 font-semibold scale-105' 
                    : 'text-gray-700 hover:text-cyan-400 hover:scale-105'}
-                 ${isMobile ? ' text-base px-3 py-2 rounded-md hover:bg-gray-100' : 'px-3 py-2'}`
+                 ${isMobile ? ' px-3 py-2 rounded-md hover:bg-gray-100' : 'px-3 py-2'}`
               }
             >
               {title}
@@ -108,8 +107,8 @@ const Navbar = () => {
           <a
             href={`#${scrollId}`}
             onClick={(e) => scrollToSection(e, scrollId)}
-            className={`text-gray-700 hover:text-cyan-400 hover:scale-105 px-3 py-2 rounded-md font-medium transition-transform duration-150 ease-in-out flex items-center whitespace-nowrap
-             ${isMobile ? 'w-full text-left text-base hover:bg-gray-100' : 'text-base'}`}
+            className={`text-gray-700 text-sm hover:text-cyan-400 hover:scale-105 px-3 py-2 rounded-md font-medium transition-transform duration-150 ease-in-out flex items-center whitespace-nowrap
+             ${isMobile ? 'w-full text-left hover:bg-gray-100' : ''}`}
           >
             {title}
           </a>
@@ -131,14 +130,12 @@ const Navbar = () => {
 
           <div className="hidden lg:flex lg:space-x-4">
             <ul className="flex items-center space-x-4">
-              {pageLinks.length > 0 && pageLinks.length <= MAX_DIRECT_LINKS && (
-                <>{renderPageLinks()}</>
-              )}
-              {pageLinks.length > MAX_DIRECT_LINKS && (
+              {pageLinks.length > 0 && pageLinks.length <= MAX_DIRECT_PAGES && renderPageLinks()}
+              {pageLinks.length > MAX_DIRECT_PAGES && (
                 <li className="relative" ref={pageDropdownRef}>
                   <button
                     onClick={() => setIsPageDropdownOpen(!isPageDropdownOpen)}
-                    className="text-gray-700 hover:text-cyan-400 px-3 py-2 rounded-md text-base font-medium transition duration-150 flex items-center hover:scale-105"
+                    className="text-gray-700 text-sm hover:text-cyan-400 px-3 py-2 rounded-md font-medium transition duration-150 flex items-center hover:scale-105"
                   >
                     Pages <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${isPageDropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
@@ -152,15 +149,12 @@ const Navbar = () => {
                 <li className="border-l border-gray-300 h-6"></li>
               )}
 
-              {pageSections.length > 0 && pageSections.length <= MAX_DIRECT_LINKS && (
-                <>{renderSectionLinks()}</>
-              )}
-
-              {pageSections.length > MAX_DIRECT_LINKS && (
-                 <li className="relative" ref={sectionDropdownRef}>
+              {pageSections.length > 0 && pageSections.length <= MAX_DIRECT_SECTIONS && renderSectionLinks()}
+              {pageSections.length > MAX_DIRECT_SECTIONS && (
+                <li className="relative" ref={sectionDropdownRef}>
                   <button
                     onClick={() => setIsSectionDropdownOpen(!isSectionDropdownOpen)}
-                    className="text-gray-700 hover:text-cyan-400 px-3 py-2 rounded-md text-base font-medium transition duration-150 flex items-center hover:scale-105"
+                    className="text-gray-700 text-sm hover:text-cyan-400 px-3 py-2 rounded-md font-medium transition duration-150 flex items-center hover:scale-105"
                   >
                     Sections <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${isSectionDropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
@@ -187,9 +181,7 @@ const Navbar = () => {
       <div className={`lg:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute w-full bg-white shadow-lg pb-2`}>
         <ul className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {renderPageLinks(true)}
-          {pageSections.length > 0 && pageLinks.length > 0 && (
-            <li><hr className="border-gray-200 my-2" /></li>
-          )}
+          {pageSections.length > 0 && pageLinks.length > 0 && <li><hr className="border-gray-200 my-2" /></li>}
           {renderSectionLinks(true)}
         </ul>
       </div>
