@@ -7,7 +7,7 @@ import api from '../api/strapi';
 import { slugify, deSlugify } from '../utils/formatter'; 
 
 const MAX_DIRECT_PAGES = 6;
-const MAX_DIRECT_SECTIONS = 3;
+const MAX_DIRECT_SECTIONS = 1;
 
 const Navbar = () => {
   const [pageLinks, setPageLinks] = useState([]);
