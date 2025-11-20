@@ -38,7 +38,7 @@ export default function TextSection({ data }) {
     >
       {displayTitle && (
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold" style={{ color: COLORS.primary }}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold" style={{ color: COLORS.primary }}>
             {displayTitle}
           </h2>
           <div

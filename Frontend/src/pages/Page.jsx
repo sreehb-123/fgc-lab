@@ -72,7 +72,7 @@ const Page = ({ slug: propSlug }) => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <main className="flex-grow pt-24 pb-16 px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl mx-auto space-y-10">
+      <main className="flex-grow x-4 sm:px-6 md:px-10 lg:px-16 mt-20 space-y-10">
         {sections.map((section, index) => {
           const title = section.sectionTitle || section.title || deSlugify(section.__component);
           const scrollId = slugify(title);

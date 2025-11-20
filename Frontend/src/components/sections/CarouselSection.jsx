@@ -31,12 +31,12 @@ export default function CarouselSection({ data }) {
       className="
         relative max-w-6xl overflow-hidden py-12 px-4
         bg-gradient-to-b from-gray-50 to-gray-100
-        rounded-3xl shadow-xl border border-gray-200
+        rounded-3xl shadow-xl border border-gray-200 mx-auto
       "
     >
       {/* Section Heading */}
       <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold" style={{ color: COLORS.primary }}>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold" style={{ color: COLORS.primary }}>
           {title}
         </h2>
         <div
