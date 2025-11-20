@@ -61,7 +61,7 @@ const Navbar = () => {
   };
 
   const linkBase =
-    "px-3 py-2 rounded-md text-sm font-medium transition-all duration-200";
+    "px-4 py-3 rounded-lg text-base sm:text-lg font-medium transition-all duration-200";
 
   const renderPageLinks = (isMobile = false) =>
     pageLinks.map((link) => {
@@ -89,26 +89,26 @@ const Navbar = () => {
       );
     });
 
-  const renderSectionLinks = (isMobile = false) =>
-    pageSections.map((section) => {
-      const title = section.sectionTitle || section.title || deSlugify(section.__component);
-      const scrollId = slugify(title);
+  // const renderSectionLinks = (isMobile = false) =>
+  //   pageSections.map((section) => {
+  //     const title = section.sectionTitle || section.title || deSlugify(section.__component);
+  //     const scrollId = slugify(title);
 
-      return (
-        <li key={section.id || section.__component}>
-          <a
-            href={`#${scrollId}`}
-            onClick={(e) => scrollToSection(e, scrollId)}
-            className={`
-              ${linkBase} ${isMobile ? "block w-full" : ""}
-              text-black hover:text-[${COLORS.accent}] hover:bg-black/5
-            `}
-          >
-            {title}
-          </a>
-        </li>
-      );
-    });
+  //     return (
+  //       <li key={section.id || section.__component}>
+  //         <a
+  //           href={`#${scrollId}`}
+  //           onClick={(e) => scrollToSection(e, scrollId)}
+  //           className={`
+  //             ${linkBase} ${isMobile ? "block w-full" : ""}
+  //             text-black hover:text-[${COLORS.accent}] hover:bg-black/5
+  //           `}
+  //         >
+  //           {title}
+  //         </a>
+  //       </li>
+  //     );
+  //   });
 
   return (
     <header
@@ -125,7 +125,7 @@ const Navbar = () => {
           {/* LOGO */}
           <Link
             to="/"
-            className="text-xl sm:text-2xl font-black"
+            className="text-2xl sm:text-3xl md:text-4xl font-black"
             onClick={() => window.scrollTo(0, 0)}
             style={{ color: COLORS.primary }}
           >
@@ -133,7 +133,7 @@ const Navbar = () => {
           </Link>
 
           {/* DESKTOP MENU */}
-          <ul className="hidden lg:flex items-center space-x-2">
+          {/* <ul className="hidden lg:flex items-center space-x-2">
             {pageLinks.length <= MAX_DIRECT_PAGES ? (
               renderPageLinks()
             ) : (
@@ -181,6 +181,10 @@ const Navbar = () => {
                 </div>
               </li>
             )}
+          </ul> */}
+
+          <ul className="hidden lg:flex items-center space-x-2">
+            {renderPageLinks()}
           </ul>
 
           {/* MOBILE MENU BUTTON */}
@@ -188,7 +192,7 @@ const Navbar = () => {
             onClick={toggleMenu}
             className="lg:hidden p-2 rounded-md text-black hover:bg-black/5"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
           </button>
         </div>
       </nav>
@@ -201,10 +205,10 @@ const Navbar = () => {
           bg-white/60 backdrop-blur-xl shadow-xl
         `}
       >
-        <ul className="px-4 py-4 space-y-1">
+        <ul className="px-4 py-4 space-y-2">
           {renderPageLinks(true)}
-          {pageSections.length > 0 && <hr className="border-black/10 my-2" />}
-          {renderSectionLinks(true)}
+          {/* {pageSections.length > 0 && <hr className="border-black/10 my-2" />}
+          {renderSectionLinks(true)} */}
         </ul>
       </div>
     </header>
