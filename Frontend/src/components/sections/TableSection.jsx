@@ -24,9 +24,7 @@ export default function TableSection({ data }) {
   return (
     <section
       className="
-        py-14 px-6 md:px-10
-        bg-gradient-to-b from-gray-50 to-gray-100
-        rounded-3xl shadow-xl border border-gray-200
+        py-14 px-6 md:px-10 max-w-6xl
         mt-12
       "
     >
@@ -44,7 +42,7 @@ export default function TableSection({ data }) {
       )}
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto rounded-3xl">
         <table className="min-w-full border border-gray-300 border-collapse">
           <thead className="bg-[#1A237E] text-white">
             <tr>

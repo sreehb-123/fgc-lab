@@ -33,7 +33,7 @@ export default function TextSection({ data }) {
         py-14 px-6 md:px-10
         bg-gradient-to-b from-gray-50 to-gray-100
         rounded-3xl shadow-xl border border-gray-200
-        max-w-5xl mx-auto mt-12
+        max-w-6xl mx-auto mt-12
       "
     >
       {displayTitle && (
