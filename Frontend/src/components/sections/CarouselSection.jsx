@@ -29,7 +29,7 @@ export default function CarouselSection({ data }) {
   return (
     <section
       className="
-        relative w-full overflow-hidden py-12 px-4
+        relative max-w-6xl overflow-hidden py-12 px-4
         bg-gradient-to-b from-gray-50 to-gray-100
         rounded-3xl shadow-xl border border-gray-200
       "

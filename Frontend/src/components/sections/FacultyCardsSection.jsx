@@ -11,99 +11,86 @@ export default function FacultyCardsSection({ data }) {
   const { sectionTitle, faculty } = data;
   if (!faculty || faculty.length === 0) return null;
 
+  const mainFaculty = faculty[0]; // Only show the BIG main guy
+
   return (
     <section
       className="
-        py-16 px-6 lg:px-10 
-        bg-white 
+        py-14 px-4 sm:px-6 lg:px-12
+        bg-white
         rounded-3xl
-        shadow-[0_4px_20px_rgba(0,0,0,0.06)]
+        shadow-[0_6px_30px_rgba(0,0,0,0.08)]
         border border-gray-200
+        max-w-6xl mx-auto
       "
     >
       {/* Section Heading */}
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold" style={{ color: COLORS.primary }}>
+      <div className="text-center mb-14">
+        <h2 className="text-4xl font-bold" style={{ color: COLORS.primary }}>
           {sectionTitle}
-        </h2> 
+        </h2>
 
-        {/* Accent underline */}
         <div
-          className="mx-auto mt-2 w-20 h-1 rounded-full"
+          className="mx-auto mt-3 w-24 h-1 rounded-full"
           style={{ background: COLORS.accent }}
         ></div>
       </div>
 
-      {/* Faculty Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-        {faculty.map((f, i) => (
-          <div
-            key={i}
-            className="
-              p-6 bg-white rounded-2xl border border-gray-200 
-              shadow-sm hover:shadow-xl 
-              transition-all duration-200 
-              flex flex-col items-center text-center
-            "
-            style={{ borderColor: COLORS.secondary + "33" }}
+      {/* Huge Faculty Card */}
+      <div
+        className="
+          flex flex-col md:flex-row items-center md:items-start
+          gap-10 p-10
+          bg-white rounded-3xl border border-gray-200
+          shadow-lg hover:shadow-2xl transition-all duration-300
+        "
+        style={{ borderColor: COLORS.secondary + "33" }}
+      >
+        {/* Avatar */}
+        <div className="flex-shrink-0">
+          <img
+            src={mainFaculty.imageUrl}
+            alt={mainFaculty.name}
+            className="w-48 h-48 rounded-2xl object-cover shadow-md ring-1"
+            style={{ ringColor: COLORS.primary }}
+          />
+        </div>
+
+        {/* Text Content */}
+        <div className="flex-1 text-left md:mt-2">
+          <h3
+            className="text-3xl font-bold"
+            style={{ color: COLORS.primary }}
           >
-            {/* Avatar */}
-            <div className="relative">
-              <img
-                src={f.imageUrl}
-                alt={f.name}
-                className="
-                  w-28 h-28 rounded-full object-cover
-                  shadow-md ring-4
-                "
-                style={{ ringColor: COLORS.primary }}
-              />
+            {mainFaculty.name}
+          </h3>
 
-              {/* Small accent bar */}
-              {/* <span
-                className="absolute -bottom-1 left-1/2 -translate-x-1/2 block w-10 h-1.5 rounded-full"
-                style={{ background: COLORS.accent }}
-              ></span> */}
-            </div>
+          <p
+            className="text-lg font-medium mt-2"
+            style={{ color: COLORS.accent }}
+          >
+            {mainFaculty.role}
+          </p>
 
-            {/* Name */}
-            <h3
-              className="text-lg font-semibold mt-4"
-              style={{ color: COLORS.primary }}
-            >
-              {f.name}
-            </h3>
-
-            {/* Role */}
+          {mainFaculty.description && (
             <p
-              className="text-sm font-medium"
+              className="text-base mt-4 leading-relaxed max-w-2xl"
+              style={{ color: COLORS.grayText }}
+            >
+              {mainFaculty.description}
+            </p>
+          )}
+
+          {mainFaculty.email && (
+            <a
+              href={`mailto:${mainFaculty.email}`}
+              className="inline-block mt-6 text-base font-semibold hover:underline"
               style={{ color: COLORS.accent }}
             >
-              {f.role}
-            </p>
-
-            {/* Description */}
-            {f.description && (
-              <p
-                className="text-sm mt-3 leading-relaxed px-3"
-                style={{ color: COLORS.grayText }}
-              >
-                {f.description}
-              </p>
-            )}
-
-            {/* Email */}
-            {f.email && (
-              <a
-                href={`mailto:${f.email}`}
-                className="mt-4 text-sm font-medium hover:underline transition-all"
-                style={{ color: COLORS.accent }}
-              >
-                {f.email}
-              </a>
-            )}
-          </div>
-        ))}
+              {mainFaculty.email}
+            </a>
+          )}
+        </div>
       </div>
     </section>
   );
