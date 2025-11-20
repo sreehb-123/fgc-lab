@@ -1,75 +1,54 @@
 import React from "react";
 
-const COLORS = {
-  primary: "#1A237E",
-  secondary: "#3949AB",
-  accent: "#00A3A1",
-  grayText: "#616161",
-};
-
 export default function TableSection({ data }) {
   if (!data) return null;
 
   const { title, columns = [], rows = [] } = data;
+  
   const statusStyles = {
     Completed: "bg-green-100 text-green-800",
-    Complete: "bg-green-100 text-green-800",
     Delayed: "bg-red-100 text-red-800",
     Ongoing: "bg-yellow-100 text-yellow-800",
     "In Progress": "bg-yellow-100 text-yellow-800",
     Pending: "bg-blue-100 text-blue-800",
     Default: "bg-gray-100 text-gray-800",
+    Complete: "bg-green-100 text-green-800"
   };
 
   return (
-    <section
-      className="
-        py-14 px-6 md:px-10
-        bg-gradient-to-b from-gray-50 to-gray-100
-        rounded-3xl shadow-xl border border-gray-200
-        mt-12
-      "
-    >
-      {/* Section Heading */}
+    <section className="py-16 px-6 md:px-12">
       {title && (
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold" style={{ color: COLORS.primary }}>
-            {title}
-          </h2>
-          <div
-            className="w-20 h-1 mx-auto mt-2 rounded-full"
-            style={{ backgroundColor: COLORS.accent }}
-          ></div>
-        </div>
+        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          {title}
+        </h2>
       )}
 
-      {/* Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-300 border-collapse">
-          <thead className="bg-[#1A237E] text-white">
+        <table className="min-w-full bg-white rounded-xl shadow-lg overflow-hidden">
+          <thead className="bg-[#4B0082] text-white">
             <tr>
               {columns.map((col, idx) => (
                 <th
                   key={idx}
-                  className="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wide border-b border-gray-300"
+                  className={`px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider ${
+                    idx === 0 ? "rounded-tl-xl" : ""
+                  } ${idx === columns.length - 1 ? "rounded-tr-xl" : ""}`}
                 >
                   {col}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-gray-200">
             {rows.length > 0 ? (
               rows.map((row, rowIdx) => (
-                <tr
-                  key={rowIdx}
-                  className={`${rowIdx % 2 === 0 ? "bg-white" : "bg-gray-50"} hover:bg-gray-200 transition-colors`}
-                >
+                <tr key={rowIdx} className="hover:bg-gray-50 transition-colors">
                   {row.map((cell, cellIdx) => {
                     if (cellIdx === columns.length - 1) {
-                      const statusClass = statusStyles[cell] || statusStyles.Default;
+                      const statusClass =
+                        statusStyles[cell] || statusStyles.Default;
                       return (
-                        <td key={cellIdx} className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
+                        <td key={cellIdx} className="px-6 py-4 whitespace-nowrap">
                           <span
                             className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${statusClass}`}
                           >
@@ -78,13 +57,17 @@ export default function TableSection({ data }) {
                         </td>
                       );
                     }
+
                     return (
                       <td
                         key={cellIdx}
-                        className="px-6 py-4 text-sm border-b border-gray-200"
-                        style={{ color: COLORS.grayText }}
+                        className={`px-6 py-4 text-sm ${
+                          cellIdx === 0
+                            ? "font-medium text-gray-900 whitespace-nowrap"
+                            : "text-gray-700"
+                        }`}
                       >
-                        {cellIdx === 0 ? <span className="font-medium">{cell}</span> : cell}
+                        {cell}
                       </td>
                     );
                   })}
@@ -92,7 +75,7 @@ export default function TableSection({ data }) {
               ))
             ) : (
               <tr>
-                <td colSpan={columns.length} className="text-center py-6" style={{ color: COLORS.grayText }}>
+                <td colSpan={columns.length} className="text-center text-gray-500 py-6">
                   No data available
                 </td>
               </tr>
