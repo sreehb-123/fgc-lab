@@ -6,6 +6,13 @@ import { usePageContext } from '../context/PageContext';
 import api from '../api/strapi';
 import { slugify, deSlugify } from '../utils/formatter'; 
 
+const COLORS = {
+  primary: "#1A237E",
+  secondary: "#3949AB",
+  accent: "#00A3A1",
+  grayText: "#616161",
+};
+
 const MAX_DIRECT_PAGES = 6;
 const MAX_DIRECT_SECTIONS = 1;
 
@@ -26,89 +33,76 @@ const Navbar = () => {
     const fetchNavData = async () => {
       const links = await getNavLinks();
       if (links) setPageLinks(links.sort((a, b) => a.id - b.id));
-
-      try {
-        const res = await api.get("/pages?filters[slug][$eq]=home&fields[0]=title");
-        const homePage = res.data?.data?.[0];
-        const homePageTitle = homePage?.attributes?.title || homePage?.title;
-        // if (homePageTitle) setLabTitle(homePageTitle);
-      } catch (err) {
-        console.error("Error fetching home page title:", err);
-      }
     };
     fetchNavData();
   }, []);
 
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location.pathname]);
+  useEffect(() => setIsMenuOpen(false), [location.pathname]);
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (pageDropdownRef.current && !pageDropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (event) => {
+      if (pageDropdownRef.current && !pageDropdownRef.current.contains(event.target))
         setIsPageDropdownOpen(false);
-      }
-      if (sectionDropdownRef.current && !sectionDropdownRef.current.contains(event.target)) {
+      if (sectionDropdownRef.current && !sectionDropdownRef.current.contains(event.target))
         setIsSectionDropdownOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [pageDropdownRef, sectionDropdownRef]);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const scrollToSection = (e, scrollId) => {
     e.preventDefault(); 
-    if (isMenuOpen) setIsMenuOpen(false); 
-    if (isSectionDropdownOpen) setIsSectionDropdownOpen(false);
+    setIsMenuOpen(false);
+    setIsSectionDropdownOpen(false);
     const element = document.getElementById(scrollId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const renderPageLinks = (isMobile = false) =>
-    pageLinks
-      .filter(link => !!link)
-      .map((link) => {
-        const slug = link.attributes?.slug || link.slug;
-        const title = link.attributes?.title || link.title;
-        if (!slug || !title) return null;
+  const linkBase =
+    "px-3 py-2 rounded-md text-sm font-medium transition-all duration-200";
 
-        return (
-          <li key={link.id}>
-            <NavLink
-              to={`/${slug}`}
-              onClick={isMobile ? toggleMenu : () => setIsPageDropdownOpen(false)}
-              className={({ isActive }) =>
-                `transition duration-150 flex items-center whitespace-nowrap text-sm
-                 ${isMobile ? 'w-full text-left' : 'transition-transform duration-150 ease-in-out'}
-                 ${isActive 
-                   ? 'text-cyan-500 font-semibold scale-105' 
-                   : 'text-gray-700 hover:text-cyan-400 hover:scale-105'}
-                 ${isMobile ? ' px-3 py-2 rounded-md hover:bg-gray-100' : 'px-3 py-2'}`
-              }
-            >
-              {title}
-            </NavLink>
-          </li>
-        );
-      });
+  const renderPageLinks = (isMobile = false) =>
+    pageLinks.map((link) => {
+      if (!link) return null;
+      const slug = link.attributes?.slug || link.slug;
+      const title = link.attributes?.title || link.title;
+
+      return (
+        <li key={link.id}>
+          <NavLink
+            to={`/${slug}`}
+            onClick={isMobile ? toggleMenu : () => setIsPageDropdownOpen(false)}
+            className={({ isActive }) =>
+              `${linkBase} ${isMobile ? "block w-full" : ""}
+               ${
+                 isActive
+                   ? `text-[${COLORS.accent}] font-semibold bg-black/5`
+                   : `text-black hover:text-[${COLORS.accent}] hover:bg-black/5`
+               }`
+            }
+          >
+            {title}
+          </NavLink>
+        </li>
+      );
+    });
 
   const renderSectionLinks = (isMobile = false) =>
     pageSections.map((section) => {
       const title = section.sectionTitle || section.title || deSlugify(section.__component);
       const scrollId = slugify(title);
+
       return (
         <li key={section.id || section.__component}>
           <a
             href={`#${scrollId}`}
             onClick={(e) => scrollToSection(e, scrollId)}
-            className={`text-gray-700 text-sm hover:text-cyan-400 hover:scale-105 px-3 py-2 rounded-md font-medium transition-transform duration-150 ease-in-out flex items-center whitespace-nowrap
-             ${isMobile ? 'w-full text-left hover:bg-gray-100' : ''}`}
+            className={`
+              ${linkBase} ${isMobile ? "block w-full" : ""}
+              text-black hover:text-[${COLORS.accent}] hover:bg-black/5
+            `}
           >
             {title}
           </a>
@@ -117,71 +111,99 @@ const Navbar = () => {
     });
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-xl">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header
+      className="
+        fixed top-0 left-0 right-0 z-50
+        bg-white/40 backdrop-blur-xl
+        border-b border-black/10
+        shadow-[0_4px_20px_rgba(0,0,0,0.08)]
+      "
+    >
+      <nav className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center h-20">
-          <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-2" onClick={() => window.scrollTo(0, 0)}>
-              <span className="text-3xl font-black text-brand-primary">
-                {labTitle} 
-              </span>
-            </Link>
-          </div>
 
-          <div className="hidden lg:flex lg:space-x-4">
-            <ul className="flex items-center space-x-4">
-              {pageLinks.length > 0 && pageLinks.length <= MAX_DIRECT_PAGES && renderPageLinks()}
-              {pageLinks.length > MAX_DIRECT_PAGES && (
-                <li className="relative" ref={pageDropdownRef}>
-                  <button
-                    onClick={() => setIsPageDropdownOpen(!isPageDropdownOpen)}
-                    className="text-gray-700 text-sm hover:text-cyan-400 px-3 py-2 rounded-md font-medium transition duration-150 flex items-center hover:scale-105"
-                  >
-                    Pages <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${isPageDropdownOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  <div className={`absolute top-full left-0 mt-2 z-20 bg-white shadow-lg rounded-md overflow-hidden ring-1 ring-black ring-opacity-5 ${isPageDropdownOpen ? 'block' : 'hidden'}`}>
-                    <ul>{renderPageLinks()}</ul>
-                  </div>
-                </li>
-              )}
+          {/* LOGO */}
+          <Link
+            to="/"
+            className="text-xl sm:text-2xl font-black"
+            onClick={() => window.scrollTo(0, 0)}
+            style={{ color: COLORS.primary }}
+          >
+            {labTitle}
+          </Link>
 
-              {pageSections.length > 0 && pageLinks.length > 0 && (
-                <li className="border-l border-gray-300 h-6"></li>
-              )}
+          {/* DESKTOP MENU */}
+          <ul className="hidden lg:flex items-center space-x-2">
+            {pageLinks.length <= MAX_DIRECT_PAGES ? (
+              renderPageLinks()
+            ) : (
+              <li className="relative" ref={pageDropdownRef}>
+                <button
+                  onClick={() => setIsPageDropdownOpen(!isPageDropdownOpen)}
+                  className={`text-black ${linkBase} flex items-center gap-1 hover:text-[${COLORS.accent}] hover:bg-black/5`}
+                >
+                  Pages <ChevronDown className={`w-4 h-4 transition ${isPageDropdownOpen ? "rotate-180" : ""}`} />
+                </button>
 
-              {pageSections.length > 0 && pageSections.length <= MAX_DIRECT_SECTIONS && renderSectionLinks()}
-              {pageSections.length > MAX_DIRECT_SECTIONS && (
-                <li className="relative" ref={sectionDropdownRef}>
-                  <button
-                    onClick={() => setIsSectionDropdownOpen(!isSectionDropdownOpen)}
-                    className="text-gray-700 text-sm hover:text-cyan-400 px-3 py-2 rounded-md font-medium transition duration-150 flex items-center hover:scale-105"
-                  >
-                    Sections <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${isSectionDropdownOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  <div className={`absolute top-full left-0 mt-2 z-20 bg-white shadow-lg rounded-md overflow-hidden ring-1 ring-black ring-opacity-5 ${isSectionDropdownOpen ? 'block' : 'hidden'}`}>
-                    <ul>{renderSectionLinks()}</ul>
-                  </div>
-                </li>
-              )}
-            </ul>
-          </div>
+                <div
+                  className={`absolute top-full left-0 mt-2 z-30
+                    bg-white/70 backdrop-blur-xl
+                    border border-black/10 shadow-xl rounded-xl
+                    overflow-hidden w-64 ${isPageDropdownOpen ? "block" : "hidden"}`}
+                >
+                  <ul className="py-2 px-2">{renderPageLinks()}</ul>
+                </div>
+              </li>
+            )}
 
-          <div className="lg:hidden">
-            <button
-              onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-brand-primary hover:text-cyan-400 hover:bg-gray-100 focus:outline-none"
-            >
-              <span className="sr-only">Open main menu</span>
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+            {pageSections.length > 0 && pageLinks.length > 0 && (
+              <li className="border-l border-black/10 h-5"></li>
+            )}
+
+            {pageSections.length <= MAX_DIRECT_SECTIONS ? (
+              renderSectionLinks()
+            ) : (
+              <li className="relative" ref={sectionDropdownRef}>
+                <button
+                  onClick={() => setIsSectionDropdownOpen(!isSectionDropdownOpen)}
+                  className={`text-black ${linkBase} flex items-center gap-1 hover:text-[${COLORS.accent}] hover:bg-black/5`}
+                >
+                  Sections <ChevronDown className={`w-4 h-4 transition ${isSectionDropdownOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                <div
+                  className={`absolute top-full left-0 mt-2 z-30
+                    bg-white/70 backdrop-blur-xl
+                    border border-black/10 shadow-xl rounded-xl
+                    overflow-hidden w-64 ${isSectionDropdownOpen ? "block" : "hidden"}`}
+                >
+                  <ul className="py-2 px-2">{renderSectionLinks()}</ul>
+                </div>
+              </li>
+            )}
+          </ul>
+
+          {/* MOBILE MENU BUTTON */}
+          <button
+            onClick={toggleMenu}
+            className="lg:hidden p-2 rounded-md text-black hover:bg-black/5"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </nav>
 
-      <div className={`lg:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute w-full bg-white shadow-lg pb-2`}>
-        <ul className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      {/* MOBILE MENU */}
+      <div
+        className={`
+          lg:hidden transition-all duration-300 overflow-hidden
+          ${isMenuOpen ? "max-h-[450px] opacity-100" : "max-h-0 opacity-0"}
+          bg-white/60 backdrop-blur-xl shadow-xl
+        `}
+      >
+        <ul className="px-4 py-4 space-y-1">
           {renderPageLinks(true)}
-          {pageSections.length > 0 && pageLinks.length > 0 && <li><hr className="border-gray-200 my-2" /></li>}
+          {pageSections.length > 0 && <hr className="border-black/10 my-2" />}
           {renderSectionLinks(true)}
         </ul>
       </div>

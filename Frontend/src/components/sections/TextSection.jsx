@@ -1,6 +1,12 @@
 import React from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
+const COLORS = {
+  primary: "#1A237E",
+  secondary: "#3949AB",
+  accent: "#00A3A1",
+  grayText: "#616161",
+};
 
 export default function TextSection({ data }) {
   const {
@@ -10,58 +16,66 @@ export default function TextSection({ data }) {
     date,
     date_range,
     link_text,
-    link_description
+    link_description,
   } = data || {};
 
-  const displayTitle = title  || "";
-  const displayDateRange = date_range  || "";
-  const displayDate = date  || "";
+  const displayTitle = title || "";
+  const displayDateRange = date_range || "";
+  const displayDate = date || "";
   const hasContent = content && content.length > 0;
-  const displayLink = link  || "#";
-  const linkDescription = link_description || "" ;
-  const linkText = link_text || "" ;
+  const displayLink = link || "#";
+  const displayLinkText = link_text || link;
+  const linkDescription = link_description || "";
 
   return (
-    <section className="py-8">
-      <div className="mt-10 max-w-5xl mx-auto space-y-8">
-        <div className="bg-white p-8 rounded-xl shadow-2xl border-t-8 border-[#00CED1]">
-          <div className="flex justify-between items-start">
-            <p className="text-xl font-semibold text-gray-900">
-              {displayTitle}
-            </p>
-            <span className="text-sm text-gray-500 italic whitespace-nowrap ml-4">
-              {displayDateRange}
-            </span>
-          </div>
-
-          <p className="text-sm text-gray-500 italic mt-1 mb-4">
-            {displayDate}
-          </p>
-
-          <div className="space-y-6 text-gray-600">
-            {hasContent ? (
-              <BlocksRenderer content={content} />
-            ) : (
-              <p>No content available.</p>
-            )}
-
-            <p>
-              <strong>{linkDescription}</strong>
-              <a
-                href={displayLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${
-                  link
-                    ? "text-[#00CED1] hover:text-[#4B0082]"
-                    : "text-gray-400 cursor-not-allowed"
-                } font-medium ml-1 inline-flex items-center`}
-              >
-                {linkText ? linkText : link}
-              </a>
-            </p>
-          </div>
+    <section
+      className="
+        py-14 px-6 md:px-10
+        bg-gradient-to-b from-gray-50 to-gray-100
+        rounded-3xl shadow-xl border border-gray-200
+        max-w-6xl mx-auto mt-12
+      "
+    >
+      {displayTitle && (
+        <div className="text-center mb-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold" style={{ color: COLORS.primary }}>
+            {displayTitle}
+          </h2>
+          <div
+            className="w-20 h-1 mx-auto mt-2 rounded-full"
+            style={{ backgroundColor: COLORS.accent }}
+          ></div>
         </div>
+      )}
+
+      {(displayDateRange || displayDate) && (
+        <div className="flex justify-between items-center mb-6 text-sm italic">
+          <span style={{ color: COLORS.grayText }}>{displayDateRange}</span>
+          <span style={{ color: COLORS.grayText }}>{displayDate}</span>
+        </div>
+      )}
+
+      <div className="space-y-6 text-gray-700">
+        {hasContent ? (
+          <BlocksRenderer content={content} />
+        ) : (
+          <p style={{ color: COLORS.grayText }}>No content available.</p>
+        )}
+
+        {displayLink && (
+          <p>
+            {linkDescription && <strong>{linkDescription} </strong>}
+            <a
+              href={displayLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-1 font-medium"
+              style={{ color: COLORS.accent }}
+            >
+              {displayLinkText}
+            </a>
+          </p>
+        )}
       </div>
     </section>
   );
