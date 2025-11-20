@@ -5,6 +5,7 @@ import SectionRenderer from "../components/SectionRenderrer";
 import Footer from "../components/Footer";
 import { usePageContext } from "../context/PageContext"; 
 import { slugify, deSlugify } from "../utils/formatter"; 
+import SidebarSections from "../components/Sidebar";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 const DEBUG = true;
@@ -71,7 +72,10 @@ const Page = ({ slug: propSlug }) => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col lg:flex-row w-full mt-20">
+      <div className="hidden lg:block">
+        <SidebarSections sections={sections}/>
+      </div>
       <main className="flex-grow x-4 sm:px-6 md:px-10 lg:px-16 mt-20 space-y-10">
         {sections.map((section, index) => {
           const title = section.sectionTitle || section.title || deSlugify(section.__component);
