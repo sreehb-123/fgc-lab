@@ -19,7 +19,7 @@ export default function CardsSection({ data }) {
       {sectionTitle && (
         <div className="text-left mb-10">
           <h2
-            className="text-3xl font-bold"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold"
             style={{ color: COLORS.primary }}
           >
             {sectionTitle}
@@ -38,7 +38,7 @@ export default function CardsSection({ data }) {
             {sub.subSectionTitle && (
               <div className="mb-6">
                 <h3
-                  className="text-2xl font-semibold"
+                  className="text-xl sm:text-2xl md:text-3xl font-semibold"
                   style={{ color: COLORS.secondary }}
                 >
                   {sub.subSectionTitle}
@@ -66,13 +66,13 @@ export default function CardsSection({ data }) {
                   >
                     <div className="flex justify-between items-start gap-4">
                       <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-gray-900">
+                        <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">
                           {card.title}
                         </h4>
 
                         {card.subTitle && (
                           <p
-                            className="text-sm font-medium mt-2"
+                            className="text-sm sm:text-base md:text-lg font-medium mt-2"
                             style={{ color: COLORS.accent }}
                           >
                             {card.subTitle}
@@ -89,7 +89,7 @@ export default function CardsSection({ data }) {
 
                     {card.info && (
                       <p
-                        className="text-sm mt-3 leading-relaxed"
+                        className="text-xs sm:text-sm md:text-base leading-relaxed mt-3 leading-relaxed"
                         style={{ color: COLORS.grayText }}
                       >
                         {card.info}

@@ -24,14 +24,14 @@ export default function TableSection({ data }) {
   return (
     <section
       className="
-        py-14 px-6 md:px-10 max-w-6xl
-        mt-12
+        py-14 px-6 md:px-10 max-w-7xl
+        mt-12 mx-auto
       "
     >
       {/* Section Heading */}
       {title && (
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold" style={{ color: COLORS.primary }}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold" style={{ color: COLORS.primary }}>
             {title}
           </h2>
           <div
@@ -49,7 +49,7 @@ export default function TableSection({ data }) {
               {columns.map((col, idx) => (
                 <th
                   key={idx}
-                  className="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wide border-b border-gray-300"
+                  className="px-6 py-3 text-left text-sm sm:text-base md:text-lg font-semibold uppercase tracking-wide border-b border-gray-300"
                 >
                   {col}
                 </th>
@@ -69,7 +69,7 @@ export default function TableSection({ data }) {
                       return (
                         <td key={cellIdx} className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                           <span
-                            className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${statusClass}`}
+                            className={`px-3 py-1 inline-flex text-xs sm:text-sm md:text-base leading-5 rounded-full ${statusClass}`}
                           >
                             {cell}
                           </span>

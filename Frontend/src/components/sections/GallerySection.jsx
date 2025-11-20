@@ -25,12 +25,12 @@ export default function GallerySection({ section }) {
 
   return (
     <section
-      className="py-14 px-6 md:px-10 bg-gradient-to-b from-gray-50 to-gray-100 rounded-3xl shadow-xl border border-gray-200"
+      className="py-12 px-6 md:px-10 max-w-6xl mx-auto bg-gradient-to-b from-gray-50 to-gray-100 rounded-3xl shadow-xl border border-gray-200"
     >
       {/* Heading */}
       {sectionTitle && (
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold" style={{ color: COLORS.primary }}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold" style={{ color: COLORS.primary }}>
             {sectionTitle}
           </h2>
           <div
