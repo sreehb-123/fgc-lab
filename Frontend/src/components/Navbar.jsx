@@ -89,27 +89,6 @@ const Navbar = () => {
       );
     });
 
-  // const renderSectionLinks = (isMobile = false) =>
-  //   pageSections.map((section) => {
-  //     const title = section.sectionTitle || section.title || deSlugify(section.__component);
-  //     const scrollId = slugify(title);
-
-  //     return (
-  //       <li key={section.id || section.__component}>
-  //         <a
-  //           href={`#${scrollId}`}
-  //           onClick={(e) => scrollToSection(e, scrollId)}
-  //           className={`
-  //             ${linkBase} ${isMobile ? "block w-full" : ""}
-  //             text-black hover:text-[${COLORS.accent}] hover:bg-black/5
-  //           `}
-  //         >
-  //           {title}
-  //         </a>
-  //       </li>
-  //     );
-  //   });
-
   return (
     <header
       className="
@@ -119,69 +98,49 @@ const Navbar = () => {
         shadow-[0_4px_20px_rgba(0,0,0,0.08)]
       "
     >
-      <nav className="max-w-7xl mx-auto px-6">
+      <nav className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
 
           {/* LOGO */}
-          <Link
-            to="/"
-            className="text-2xl sm:text-3xl md:text-4xl font-black"
-            onClick={() => window.scrollTo(0, 0)}
-            style={{ color: COLORS.primary }}
+          <div
+            className="flex items-center gap-4 lg:gap-6 cursor-pointer"
+            onClick={() => window.open("https://www.iitdh.ac.in/", "_blank")}
           >
-            {labTitle}
-          </Link>
+            {/* Desktop Logo */}
+            <img
+              src="/institute-logo.png" // ← replace with your actual big logo file in public
+              alt="IIT Dharwad"
+              className="
+                hidden sm:block
+                h-[45px] md:h-[55px]
+                w-auto
+                transition-transform duration-200
+                hover:scale-[1.03]
+              "
+            />
 
-          {/* DESKTOP MENU */}
-          {/* <ul className="hidden lg:flex items-center space-x-2">
-            {pageLinks.length <= MAX_DIRECT_PAGES ? (
-              renderPageLinks()
-            ) : (
-              <li className="relative" ref={pageDropdownRef}>
-                <button
-                  onClick={() => setIsPageDropdownOpen(!isPageDropdownOpen)}
-                  className={`text-black ${linkBase} flex items-center gap-1 hover:text-[${COLORS.accent}] hover:bg-black/5`}
-                >
-                  Pages <ChevronDown className={`w-4 h-4 transition ${isPageDropdownOpen ? "rotate-180" : ""}`} />
-                </button>
+            {/* Mobile Icon */}
+            <img
+              src="/institute_favicon.png" // ← small favicon file from public
+              alt="IIT DH"
+              className="
+                block sm:hidden
+                h-[40px]
+                w-auto
+                transition-transform duration-200
+                hover:scale-[1.03]
+              "
+            />
 
-                <div
-                  className={`absolute top-full left-0 mt-2 z-30
-                    bg-white/70 backdrop-blur-xl
-                    border border-black/10 shadow-xl rounded-xl
-                    overflow-hidden w-64 ${isPageDropdownOpen ? "block" : "hidden"}`}
-                >
-                  <ul className="py-2 px-2">{renderPageLinks()}</ul>
-                </div>
-              </li>
-            )}
+            {/* Next Gen Lab text */}
+            <span
+              className="text-2xl sm:text-3xl md:text-4xl font-black"
+              style={{ color: COLORS.primary }}
+            >
+              {labTitle}
+            </span>
+          </div>
 
-            {pageSections.length > 0 && pageLinks.length > 0 && (
-              <li className="border-l border-black/10 h-5"></li>
-            )}
-
-            {pageSections.length <= MAX_DIRECT_SECTIONS ? (
-              renderSectionLinks()
-            ) : (
-              <li className="relative" ref={sectionDropdownRef}>
-                <button
-                  onClick={() => setIsSectionDropdownOpen(!isSectionDropdownOpen)}
-                  className={`text-black ${linkBase} flex items-center gap-1 hover:text-[${COLORS.accent}] hover:bg-black/5`}
-                >
-                  Sections <ChevronDown className={`w-4 h-4 transition ${isSectionDropdownOpen ? "rotate-180" : ""}`} />
-                </button>
-
-                <div
-                  className={`absolute top-full left-0 mt-2 z-30
-                    bg-white/70 backdrop-blur-xl
-                    border border-black/10 shadow-xl rounded-xl
-                    overflow-hidden w-64 ${isSectionDropdownOpen ? "block" : "hidden"}`}
-                >
-                  <ul className="py-2 px-2">{renderSectionLinks()}</ul>
-                </div>
-              </li>
-            )}
-          </ul> */}
 
           <ul className="hidden lg:flex items-center space-x-2">
             {renderPageLinks()}
@@ -207,8 +166,6 @@ const Navbar = () => {
       >
         <ul className="px-4 py-4 space-y-2">
           {renderPageLinks(true)}
-          {/* {pageSections.length > 0 && <hr className="border-black/10 my-2" />}
-          {renderSectionLinks(true)} */}
         </ul>
       </div>
     </header>
