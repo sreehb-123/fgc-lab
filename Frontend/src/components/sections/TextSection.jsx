@@ -55,7 +55,7 @@ export default function TextSection({ data }) {
         </div>
       )}
 
-      <div className="space-y-6 text-gray-700">
+      <div className="space-y-6 text-gray-700 break-words break-all overflow-x-hidden">
         {hasContent ? (
           <BlocksRenderer content={content} />
         ) : (
