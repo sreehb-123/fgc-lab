@@ -79,7 +79,7 @@ const Navbar = () => {
                ${
                  isActive
                    ? `text-[${COLORS.accent}] font-semibold bg-black/5`
-                   : `text-black hover:text-[${COLORS.accent}] hover:bg-black/5`
+                   : `text-black hover:bg-gray-200`
                }`
             }
           >
