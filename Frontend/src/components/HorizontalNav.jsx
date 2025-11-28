@@ -24,7 +24,7 @@ const HorizontalNav = ({ sections }) => {
       if (hideTimeout.current) clearTimeout(hideTimeout.current);
       hideTimeout.current = setTimeout(() => {
         setVisible(false);
-      }, 1500);
+      }, 1800);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -83,7 +83,7 @@ const HorizontalNav = ({ sections }) => {
                  bg-white/70 hover:bg-white/90
                  transition-all duration-200 ease-out
                  hover:scale-[1.03] cursor-pointer
-                 whitespace-nowrap
+                 whitespace-nowrap hover:text-[#00A3A1]
                 "
               >
                 {title}

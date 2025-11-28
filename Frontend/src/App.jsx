@@ -17,7 +17,7 @@ export default function App() {
         <Route path="/:slug" element={<Page />} />
         <Route path="/" element={<Page slug="home" />} />
         {/* <Route path="/login" element={<LoginPage />} /> */}
-        <Route path="/resize-test" element={<ResizeTest />} />
+        {/* <Route path="/resize-test" element={<ResizeTest />} /> */}
       </Routes>
 
 
