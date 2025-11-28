@@ -48,13 +48,13 @@ export default function CardsSection({ data }) {
             )}
 
             {/* Cards grid: 1 per row on mobile, 2 per row on md+ (wide horizontal cards) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
               {Array.isArray(sub.cards) &&
                 sub.cards.map((card, j) => (
                   <div
                     key={card.id || j}
                     className="
-                      p- sm:p-7
+                      p-4 sm:p-7
                       rounded-2xl
                       shadow-lg
                       border-l-4
@@ -81,7 +81,8 @@ export default function CardsSection({ data }) {
                       </div>
 
                       {card.no && (
-                        <span className="text-xs font-mono text-gray-500 whitespace-nowrap">
+                        // <span className="text-xs font-mono text-gray-500 whitespace-nowrap">
+                         <span className="text-xs font-mono text-gray-500 break-words max-w-full">
                           {card.no}
                         </span>
                       )}
