@@ -11,6 +11,8 @@ import HorizontalNav from "../components/HorizontalNav";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
+const CACHE_EXPIRY = 5 * 60 * 1000; // 10 minutes
+
 const populateQuery = [
   "populate[sections][on][sections.card-section][populate][subSection][populate]=*",
   "populate[sections][on][sections.faculty-cards][populate]=*",
@@ -20,6 +22,38 @@ const populateQuery = [
   "populate[sections][on][sections.gallery][populate][images][populate]=*",
   "populate[sections][on][sections.spreadsheets][populate]=*"
 ].join("&");
+
+const getCachedPage = (slug) => {
+  try {
+    const cached = localStorage.getItem(`page_${slug}`);
+    if (!cached) return null;
+
+    const parsed = JSON.parse(cached);
+
+    // Check expiry
+    if (Date.now() - parsed.timestamp > CACHE_EXPIRY) {
+      localStorage.removeItem(`page_${slug}`);
+      return null;
+    }
+
+    return parsed.sections;
+  } catch {
+    return null;
+  }
+};
+
+// Helper to write cache
+const setCachedPage = (slug, sections) => {
+  try {
+    localStorage.setItem(
+      `page_${slug}`,
+      JSON.stringify({
+        sections,
+        timestamp: Date.now(),
+      })
+    );
+  } catch {}
+};
 
 const Page = ({ slug: propSlug }) => {
   const { slug: routeSlug } = useParams();
@@ -31,11 +65,23 @@ const Page = ({ slug: propSlug }) => {
   const { setPageSections } = usePageContext();
 
   useEffect(() => {
-    const fetchPage = async () => {
-      try {
-        setLoading(true);
-        setPageSections([]);
+    const loadPage = async () => {
+      setLoading(true);
+      setPageSections([]);
 
+      // 1️⃣ Try localStorage cache first
+      const cachedSections = getCachedPage(slug);
+      if (cachedSections) {
+        console.log(`[CACHE] Loaded page "${slug}" from LocalStorage`);
+        setSections(cachedSections);
+        setPageSections(cachedSections);
+        setLoading(false);
+        return;
+      }
+
+      // 2️⃣ Fallback → fetch from API
+      try {
+        console.log(`[API] Fetching page "${slug}"`);
         const { data } = await axios.get(
           `${API_BASE}/pages?filters[slug][$eq]=${slug}&${populateQuery}`
         );
@@ -43,8 +89,12 @@ const Page = ({ slug: propSlug }) => {
         const pageData = data?.data?.[0];
         const fetchedSections = pageData?.sections || [];
 
+        // Store in state
         setSections(fetchedSections);
         setPageSections(fetchedSections);
+
+        // Store in LocalStorage
+        setCachedPage(slug, fetchedSections);
       } catch (err) {
         console.error("Error fetching page:", err);
         setSections([]);
@@ -54,7 +104,8 @@ const Page = ({ slug: propSlug }) => {
       }
     };
 
-    fetchPage();
+    loadPage();
+
     return () => setPageSections([]);
   }, [slug]);
 
