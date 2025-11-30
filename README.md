@@ -1,6 +1,6 @@
 # Lab CMS
 
-A modern, dynamic Content Management System (CMS) built with **React** (Frontend) and **Strapi** (Backend) for managing and displaying laboratory/research website content. This project features a component-based architecture with customizable sections, real-time content editing, and a beautiful, responsive UI.
+A modern, dynamic Content Management System (CMS) built with **React** (Frontend) and **Strapi** (Backend) for managing and displaying lab/research website content. This project features a component-based architecture with customizable sections, real-time content editing, and a beautiful, responsive UI.
 
 ---
 
@@ -87,7 +87,7 @@ fgc-lab/
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/sreehb-123/fgc-lab
 cd fgc-lab
 ```
 
