@@ -1,6 +1,6 @@
 # Lab CMS
 
-A modern, dynamic Content Management System (CMS) built with **React** (Frontend) and **Strapi** (Backend) for managing and displaying lab/research website content. This project features a component-based architecture with customizable sections, real-time content editing, and a beautiful, responsive UI.
+A modern, dynamic Content Management System (CMS) built with **React** (Frontend) and **Strapi** (Backend) for managing and displaying lab/research website content. This project features a component-based architecture with customizable sections, real-time content editing, and a responsive UI.
 
 ---
 
