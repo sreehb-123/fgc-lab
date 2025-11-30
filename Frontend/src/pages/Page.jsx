@@ -18,6 +18,7 @@ const populateQuery = [
   "populate[sections][on][sections.carousel][populate][carouselSlide][populate]=*",
   "populate[sections][on][sections.table][populate]=*",
   "populate[sections][on][sections.gallery][populate][images][populate]=*",
+  "populate[sections][on][sections.spreadsheets][populate]=*"
 ].join("&");
 
 const Page = ({ slug: propSlug }) => {

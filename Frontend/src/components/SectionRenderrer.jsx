@@ -6,6 +6,7 @@ import FacultyCards from "./sections/FacultyCardsSection";
 import CarouselSection from "./sections/CarouselSection";
 import CardsSection from "./sections/CardsSection";
 import GallerySection from "./sections/GallerySection";
+import GoogleSheetsSection from "./sections/GoogleSheetsSection";
 
 const SectionRenderer = ({ section, scrollId }) => { 
   return (
@@ -30,7 +31,10 @@ const SectionRenderer = ({ section, scrollId }) => {
 
           case "sections.gallery":
            
-            return <GallerySection section={section} />; 
+            return <GallerySection section={section} />;
+          
+          case "sections.spreadsheets":
+            return <GoogleSheetsSection data={section} />;
 
           default:
             // return null;
