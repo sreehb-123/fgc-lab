@@ -5,7 +5,7 @@ echo "🔹 Pulling latest changes..."
 git pull origin main
 
 echo "🔹 Updating dependencies..."
-cd frontend
+cd Frontend
 npm install
 
 echo "🔹 Building frontend..."
