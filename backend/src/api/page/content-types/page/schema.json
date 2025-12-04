@@ -27,7 +27,8 @@
         "sections.carousel",
         "sections.card-section",
         "sections.gallery",
-        "sections.resize-test"
+        "sections.resize-test",
+        "sections.spreadsheets"
       ]
     }
   }

@@ -26,17 +26,17 @@ export default ({ env }) => ({
 
   // Remove custom URL — Strapi will auto-detect
   // Remove custom admin path — defaults to /admin
- // admin: {
-   // serveAdminPanel: true,
- // },
+ //admin: {
+    //serveAdminPanel: true,
+  //},
 
   //app: {
     //keys: env.array("APP_KEYS"),
   //},
 
- // webhooks: {
-   // populateRelations: env.bool("WEBHOOKS_POPULATE_RELATIONS", false),
- // },
+ //webhooks: {
+   //populateRelations: env.bool("WEBHOOKS_POPULATE_RELATIONS", false),
+ //},
 //});
 
 

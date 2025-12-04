@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_spreadsheets",
+  "info": {
+    "displayName": "spreadsheets"
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "string"
+    },
+    "spreadsheetsUrl": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

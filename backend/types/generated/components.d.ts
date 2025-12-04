@@ -143,6 +143,17 @@ export interface SectionsSlides extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsSpreadsheets extends Struct.ComponentSchema {
+  collectionName: 'components_sections_spreadsheets';
+  info: {
+    displayName: 'spreadsheets';
+  };
+  attributes: {
+    sectionTitle: Schema.Attribute.String;
+    spreadsheetsUrl: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsTable extends Struct.ComponentSchema {
   collectionName: 'components_sections_tables';
   info: {
@@ -191,6 +202,7 @@ declare module '@strapi/strapi' {
       'sections.gallery': SectionsGallery;
       'sections.resize-test': SectionsResizeTest;
       'sections.slides': SectionsSlides;
+      'sections.spreadsheets': SectionsSpreadsheets;
       'sections.table': SectionsTable;
       'sections.text': SectionsText;
     }
