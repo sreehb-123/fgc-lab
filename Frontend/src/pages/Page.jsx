@@ -10,6 +10,7 @@ import HorizontalNav from "../components/HorizontalNav";
 //import FloatingPillNav from "../components/FloatingPill";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
+const LAB_TITLE = import.meta.env.VITE_API_LAB_TITLE;
 
 const CACHE_EXPIRY = 5 * 60 * 1000; // 10 minutes
 
@@ -138,7 +139,7 @@ const Page = ({ slug: propSlug }) => {
         </main>
       </div>
 
-      <Footer footer="© NextGen Lab. All rights reserved." />
+      <Footer footer={`© ${LAB_TITLE}. All rights reserved.`} />
     </div>
   );
 };
