@@ -16,10 +16,12 @@ const COLORS = {
 const MAX_DIRECT_PAGES = 6;
 const MAX_DIRECT_SECTIONS = 1;
 
+const LAB_TITLE = import.meta.env.VITE_API_LAB_TITLE;
+
 const Navbar = () => {
   const [pageLinks, setPageLinks] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
-  const [labTitle, setLabTitle] = useState("Next Gen Lab");
+  const [labTitle, setLabTitle] = useState(LAB_TITLE);
   const [isPageDropdownOpen, setIsPageDropdownOpen] = useState(false);
   const [isSectionDropdownOpen, setIsSectionDropdownOpen] = useState(false);
 
